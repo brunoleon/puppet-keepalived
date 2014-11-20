@@ -35,4 +35,13 @@ class keepalived (
   contain 'keepalived::install'
   contain 'keepalived::config'
   contain 'keepalived::service'
+
+  $vrrp_instance = hiera_hash('keepalived::vrrp::instance', {} )
+  create_resources('keepalived::vrrp::instance', $vrrp_instance )
+
+  $vrrp_script = hiera_hash('keepalived::vrrp::script', {} )
+  create_resources('keepalived::vrrp::script', $vrrp_script )
+
+  $vrrp_sync_group = hiera_hash('keepalived::vrrp::sync_group', {} )
+  create_resources('keepalived::vrrp::sync_group', $vrrp_sync_group )
 }
